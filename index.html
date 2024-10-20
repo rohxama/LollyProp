@@ -309,11 +309,59 @@
         </div>
     </footer>
 
+    <script>
+        function onscroll() {
+    var projectSection = document.querySelector(".project-section");
+    var projectWrapper = document.querySelector(".project-wrapper");
+    var projectImage = document.querySelector("#project1_img");
+    var heading = document.querySelector(".desc");
+    
+    var rect = projectImage.getBoundingClientRect();
+    var rect2 = heading.getBoundingClientRect();
+    var projectWrapperRect = projectWrapper.getBoundingClientRect();
+
+    // Check the position of projectImage
+    if (rect.top <= 290) {
+        projectSection.style.top = '-530px';
+        projectWrapper.style.top = '-219px';
+        projectSection.style.transition = '1s linear';
+        projectWrapper.style.transition = '1s linear';
+    } else {
+        projectSection.style.top = '0px';
+        projectWrapper.style.top = '0px';
+    }
+
+    // Make projectImage sticky if projectWrapper is in view
+    if (projectWrapperRect.top <= 290) {
+        projectImage.style.position = 'sticky';
+        projectImage.style.top = '20px';
+        projectImage.style.bottom = '20px';
+    } else {
+        projectImage.style.position = 'relative';
+        projectImage.style.top = '-100px';
+    }
+
+    // Change projectImage source based on heading's position
+    if (rect2.top <= 140) {
+        projectImage.classList.add('fade-out');
+
+        setTimeout(function() {
+            projectImage.src = '../assets/media/Project img 1.png';
+            projectImage.classList.add('fade-in');
+        }, 400);
+    } else {
+        projectImage.src = '../assets/media/project2.jpg';
+    }
+}
+
+window.addEventListener('scroll', onscroll);
+
+    </script>
 
 
 
     <!-- Jquery Cdn -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
     <!-- Slick JS CDN -->
     <script type="text/javascript"
         src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
